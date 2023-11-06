@@ -154,10 +154,8 @@ class TeenySevenSeg {
       switch(segName) {
         case SegA : segInfo={SegH, 0,     n           }; break;
         case SegB : segInfo={SegV, l-n-1, 0           }; break;
-     // case SegC : segInfo={SegV, l-n-1, l-w         }; break;
         case SegC : segInfo={SegV, l-n-1, l-w+(w<3 ? 0 : (w%2==0 ? 0 : 1))       }; break;
         case SegD : segInfo={SegH, 0,     (2*l)-w-n-1 }; break;
-     // case SegE : segInfo={SegV, n,     l-w         }; break;
         case SegE : segInfo={SegV, n,     l-w+(w<3 ? 0 : (w%2==0 ? 0 : 1))       }; break;
         case SegF : segInfo={SegV, n,     0           }; break;
         case SegG : segInfo={SegH, 0,     l-n-1       }; break;
@@ -181,16 +179,8 @@ class TeenySevenSeg {
         }
       }
       if(segInfo.segDir==SegH) {
-        //for(int16_t x0=(x+segInfo.xOffset+segClip);
-        //    x0<=(x+segInfo.xOffset+l-1-segClip); x0++) {
-        //  drawPixel(x0, (y+segInfo.yOffset), color);
-        //}
         drawFastHLine(x+segInfo.xOffset+segClip, y+segInfo.yOffset, l-(segClip*2), color);
       } else {
-        //for(int16_t y0=(y+segInfo.yOffset+segClip);
-        //     y0<=(y+segInfo.yOffset+l-1-segClip); y0++) {
-        //  drawPixel((x+segInfo.xOffset), y0, color);
-        //}
         drawFastVLine(x+segInfo.xOffset, y+segInfo.yOffset+segClip, l-(segClip*2)-(w<3 ? 0 : (w%2==0 ? 0 : 1)), color);
       }
     }
@@ -214,9 +204,6 @@ class TeenySevenSeg {
       for(int16_t i=0; i<2; i++) {     //i=segment count
         for(int16_t j=0; j<cw; j++) {   //j=stripe count
           segInfo={SegV, j, i*(l-cw)};
-          //for(int16_t k=0; k<cl; k++) {   //k=pixel count
-          //  drawPixel((x+segInfo.xOffset), (y+segInfo.yOffset+colonOffset+k), color);
-          //}
           drawFastVLine(x+segInfo.xOffset, y+segInfo.yOffset+colonOffset, cl, color);
         }
       }
